@@ -1,0 +1,95 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class HelloWorld{
+
+     public static void main(String []args){
+         String p,c,q,pd,ed;
+         int pri;
+         Scanner input = new Scanner(System.in);
+         ArrayList<Article> list = new ArrayList<Article>();
+         int count;
+         System.out.println("How many products do you like to Add");
+         count = input.nextInt();
+         for(int i=0;i<count;i++)
+         {
+            System.out.println("enter the product details");
+            System.out.println("Enter name");
+            p=input.nextLine();
+            System.out.println("Enter price");
+            pri=input.nextInt();
+            System.out.println("Enter category");
+            c=input.nextLine();
+            System.out.println("Enter Quantity");
+            q=input.nextLine();
+            System.out.println("Enter Purchase date");
+            pd=input.nextLine();
+            System.out.println("Enter Expiry date");
+            ed=input.nextLine();
+            list.add(new Article(p,pri,c,q,pd,ed));
+         }
+         //to print total list
+         for(Article str:list)
+         {
+             System.out.println(str);
+         }
+         //to filter according to price or category
+         int x,x1=0;
+         String x2= null;
+         System.out.println("enter 0 to filter according to price or 1 for category");
+         x=input.nextInt();
+         if(x==0){System.out.println("enter minimun price to filter");x1=input.nextInt();}
+         if(x==1){System.out.println("enter category to filter");x2=input.nextLine();}
+         switch(x)
+         {
+            case 0:
+                for(Article str:list)
+                {
+                    if(str.getPrice()>x1){
+                        System.out.println(str);
+                    }
+                }
+                break;
+            case 1:
+                for(Article str:list)
+                {
+                    if(x2.equals(str.getCategory())){
+                        System.out.println(str);
+                    }
+                }
+         }
+     }
+}
+class Article
+{
+    private String product_name;
+    private int price;
+    private String category;
+    private String quantity;
+    private String purchase_date;
+    private String expiry_date;
+    
+    public Article(String p,int pr,String c,String q,String pd,String ed)
+    {
+        this.product_name=p;
+        this.price=pr;
+        this.category=c;
+        this.quantity=q;
+        this.purchase_date=pd;
+        this.expiry_date=ed;
+    }
+    public int getPrice(){
+        return price;
+    }
+    public String getCategory(){
+        return category;
+    }
+     @Override
+    public String toString() {
+        return "[ ProductName:" + product_name + ", Price:" + price + ", Category:" + category + "Qunatity:"+quantity+"Purchase_date:"+purchase_date+"Expiry_date:"+expiry_date+"]";
+    }
+    
+}
+
+
+
